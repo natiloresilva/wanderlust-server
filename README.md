@@ -82,8 +82,7 @@ Travel model
 <br>
 
 
-
-## Backlog
+### Backlog
 - Geolocation - Google Maps API
 - Create a trip with another user.
 - Inbox Messages - Send/receive messages between users.
@@ -92,7 +91,7 @@ Travel model
 
 <br>
 
-## Links
+### Links
 
 [See the Trello board.]( https://trello.com/b/aNiG6dZ7/wanderlust )
 
