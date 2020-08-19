@@ -76,6 +76,7 @@ Travel model
     travelDate: { type: String, required: true },
     idActivities: [{ type: String, required: true }],
     travelOrganizer: { type: mongoose.Schema.Types.ObjectId, ref: "User" } 
+```
 
     
 
