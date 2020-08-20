@@ -37,19 +37,24 @@ Warderlust is an app to organize your trip, you can select recommended places, t
 
 | **Method** | **Route**                          | **Description**                                              | Request  - Body                                          |
 | ---------- | ---------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
-| `GET`      | `/`                                | Main page route.  Renders home `index` view.                 |                                                          |
-| `GET`     | `/login`                           | Renders `login` form view.                                   |                                                          |
+| `GET`      | `/`                                | Main page route.  Renders `Presentacion` view.               |                                                          |
+| `GET`      | `/login`                           | Renders `login` form view.                                   |                                                          |
 | `POST`     | `/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
 | `GET`      | `/signup`                          | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | { name, email, password }                                    |
-| `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.             |                                                          |
-| `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { name, email, password, address, profileImage, languagesISpeak, languagesISpeak } |
-| `GET`      | `/private/meetings`                | Private route. Render the `meetings` view.                   |                                                          |
-| `GET`      | `/private/meetings/:meetingId`     | Private route. Render the `meeting` view.                    |                                                          |
-| `GET`      | `/private/myPendingMeetings`       | Private route. Render the `myPendingMeetings` view.          |                                                          |
-| `POST`     | `/private/myOrganizedMeetings/`    | Private route. Adds a new meeting for the current user.      | { meetingName, meetingImg, meetingDescription, meetingLanguage, meetingDate, meetingPoint, meetingOrganizer, meetingParticipants}                                 |
-| `DELETE`   | `/private/myPendingMeetings/:meetingId`| Private route. Deletes the existing meeting from the current user. |                                                |
-| `PUT`      | `/private/edit-myPendingMeetings/:meetingId`   | Private route. Sends edit-meeting info to server and updates user in DB. | { meetingName, meetingImg, meetingDescription, meetingLanguage, meetingDate, meetingPoint, meetingOrganizer, meetingParticipants } |
+| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | { name, email, password }                                |
+| `GET`      | `/profile`                         | Private route. Renders `profile` form view.                  |                                                          |
+| `PUT`      | `/edit-profile/:id`                | Private route. Sends edit-profile info to server and updates user in DB. | { bio, city }                                |
+| `GET`      | `/trips`                           | Private route. Render the `trips` view.                      |                                                          |
+| `POST`     | `/trips/:id/completed`             | Renders `completedTrips` form view.                          |                                                          |
+| `POST`     | `/trips`                           | Private route. Adds a new trip for the current user.         |  {travelCity, travelDate}                                |
+| `GET`      | `/trips/:id`                       | Private route. Render a specific `trip` view.                |                                                          |
+| `PUT`      | `/trips/:id`                       |  Private route. Sends edit-trip info to server and updates trip in DB.|  { travelCity, travelDate }                     |
+| `DELETE`   | `/trips/:id`                       | Private route. Deletes the existing trip from the user.      |                                                          |
+| `PUT`      | `/trips/:id/addThing/:idActivity`  | Private route. Adds a new activity to the current user.      |                                                          |
+| `PUT`      | `/trips/:id/removeThing/:idActivity`| Private route. Remove an activity to the current user.      |                                                          |
+
+
+
 
 
 <br>
@@ -101,6 +106,10 @@ Travel model
 ### Git
 
 The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/natiloresilva/wanderlust-client)
+
+[Server repository Link](https://github.com/natiloresilva/wanderlust-server)
 
 <br>
 
