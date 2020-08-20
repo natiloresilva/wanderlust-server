@@ -51,11 +51,12 @@ router.post("/trips/:id/completed", async (req, res) => {
 //POST
 //esta es la ruta que el usuario tendrá disponible para crear un viaje.
 router.post("/trips", (req, res, next) => {
-  const { travelCity, travelDate } = req.body;
+  const { travelCity, startDate, returnDate } = req.body;
 
   const newTrip = {
     travelCity,
-    travelDate,
+    startDate,
+    returnDate,
     travelOrganizer: req.session.currentUser._id,
     idActivities: [],
   };
@@ -111,11 +112,11 @@ router.put("/trips/:id", (req, res, next) => {
     return;
   }
 
-  const { travelCity, travelDate } = req.body;
+  const { travelCity, startDate, returnDate } = req.body;
 
   Travel.findByIdAndUpdate(
     req.params.id,
-    { travelCity, travelDate },
+    { travelCity, startDate, returnDate },
     { new: true }
   )
     .then(() => {
