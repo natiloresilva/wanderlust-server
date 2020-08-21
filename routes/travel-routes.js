@@ -18,6 +18,37 @@ router.get("/trips", (req, res, next) => {
     });
 });
 
+//              >> RUTA CREAR VIAJE (POST)
+//POST
+//esta es la ruta que el usuario tendrá disponible para crear un viaje.
+router.post("/trips", async (req, res, next) => {
+  const { travelCity, startDate, returnDate } = req.body;
+  console.log(travelCity, startDate, returnDate);
+  const newTrip = {
+    travelCity,
+    startDate,
+    returnDate,
+    travelOrganizer: req.session.currentUser._id,
+    idActivities: [],
+  };
+
+  //agregamos el viaje al 'pendingTrips' del usuario
+  try {
+    const newTravel = await Travel.create(newTrip);
+    const updateUser = await User.findByIdAndUpdate(
+      req.session.currentUser._id,
+      {
+        $push: { pendingTrips: newTravel._id },
+      },
+      { new: true }
+    );
+    console.log(newTravel);
+    res.status(200).json(newTravel);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 //              >> RUTA PRINCIPAL DE VIAJES (POST)
 //POST
 //esta es la ruta principal, donde se asignaran los viajes ya realizados a completedTrips.
@@ -45,44 +76,6 @@ router.post("/trips/:id/completed", async (req, res) => {
 
   req.session.currentUser = userResult2;
   res.json({ message: `Trip with ${req.params.id} is updated successfully.` });
-});
-
-//              >> RUTA CREAR VIAJE (POST)
-//POST
-//esta es la ruta que el usuario tendrá disponible para crear un viaje.
-router.post("/trips", (req, res, next) => {
-  const { travelCity, startDate, returnDate } = req.body;
-
-  const newTrip = {
-    travelCity,
-    startDate,
-    returnDate,
-    travelOrganizer: req.session.currentUser._id,
-    idActivities: [],
-  };
-
-  Travel.create(newTrip)
-    .then((response) => {
-      //agregamos el viaje al 'pendingTrips' del usuario.
-      User.findById(req.session.currentUser._id).then((user) => {
-        let { pendingTrips } = user;
-        pendingTrips.push(response._id);
-
-        const addTripToUser = {
-          pendingTrips,
-        };
-
-        User.update({ _id: req.session.currentUser._id }, addTripToUser).then(
-          (response) => {
-            res.json(response);
-          }
-        );
-      });
-    })
-
-    .catch((err) => {
-      res.json(err);
-    });
 });
 
 //              >> RUTA VIAJE DETAILS (GET)
