@@ -30,8 +30,9 @@ router.put("/editProfile/:id", (req, res, next) => {
   const { city, bio } = req.body;
 
   User.findByIdAndUpdate(req.params.id, { city, bio }, { new: true })
-    .then(() => {
+    .then((user) => {
       res.json({
+        user,
         message: `Profile with ${req.params.id} was edited successfully.`,
       });
     })
