@@ -5,7 +5,7 @@ const travelSchema = new Schema({
     travelCity: { type: String, required: true },
     startDate: { type: String, required: true },
     returnDate: { type: String, required: true },
-    idActivities: [{ type: String, required: true }],
+    idActivities: [ ],
     travelOrganizer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 }); 
 
