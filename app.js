@@ -33,7 +33,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://ironhack-wanderlust.web.app"],
+    origin: [process.env.PUBLIC_DOMAIN, "https://ironhack-wanderlust.web.app"],
   })
 );
 
