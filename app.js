@@ -18,7 +18,7 @@ const profileRouter = require('./routes/profile');
 
 // MONGOOSE CONNECTION
 mongoose
-  .connect("mongodb://localhost/wanderlust", {
+  .connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
     keepAlive: true,
     useNewUrlParser: true,
