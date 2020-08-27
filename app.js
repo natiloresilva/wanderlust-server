@@ -60,11 +60,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/profile", profileRouter);
-app.use("/travel", travelRouter);
-app.use("/auth", authRouter)
+app.use("/api/profile", profileRouter);
+app.use("/api/travel", travelRouter);
+app.use("/api/auth", authRouter)
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
